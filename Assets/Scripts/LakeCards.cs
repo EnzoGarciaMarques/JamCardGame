@@ -77,18 +77,8 @@ public class LakeCards : MonoBehaviour
         }
         if (a == 6)
         {
-            if (multiplier)
-            {
-                san.sanity -= 5 * 2;
-            }
-            else if (division)
-            {
-                san.sanity -= 5 / 2;
-            }
-            else
-            {
-                san.sanity -= 5;
-            }
+            san.Insanity(-5);
+
         }  
         if (a == 7)
         {

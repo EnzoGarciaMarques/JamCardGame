@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,7 @@ public class Sanity : MonoBehaviour
     [SerializeField] RawImage blink;
     bool blinked = false;
     public static Sanity instance;
+    public LakeCards lake;
     private void Awake()
     {
         if (instance != null)
@@ -22,6 +24,8 @@ public class Sanity : MonoBehaviour
         {
             instance = this;
         }
+
+        lake = FindAnyObjectByType<LakeCards>();
     }
     private void Update()
     {
@@ -34,7 +38,18 @@ public class Sanity : MonoBehaviour
     }
     public void Insanity(int a)
     {
-        sanity -= a;
+        if (lake.multiplier)
+        {
+            sanity += a * 2;
+        }
+        else if (lake.division)
+        {
+            sanity += a / 2;
+        }
+        else
+        {
+            sanity += a;
+        }
     }
     IEnumerator Blink()
     {

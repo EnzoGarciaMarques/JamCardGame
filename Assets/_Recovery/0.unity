@@ -3994,6 +3994,7 @@ MonoBehaviour:
   slider: {fileID: 1876153819}
   amount: {fileID: 235426326}
   blink: {fileID: 914528853}
+  lake: {fileID: 0}
 --- !u!1 &1423740622
 GameObject:
   m_ObjectHideFlags: 0
