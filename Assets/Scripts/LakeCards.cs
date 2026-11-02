@@ -35,45 +35,23 @@ public class LakeCards : MonoBehaviour
     {
         if (a == 1)
         {
-            san.sanity += 10 * notInHand;
+            san.Insanity(10 * notInHand);
         }
         if (a == 2)
         {
-            if (multiplier)
-            {
-                san.sanity -= (30 - notInHand * 5)*2;
-            }
-            else if (division)
-            {
-                san.sanity -= (30 - notInHand * 5)/2;
-            }
-            else
-            {
-                san.sanity -= 30 - notInHand * 5;
-            }
+            san.Insanity(-30 + notInHand * 5);
         }
         if (a == 3)
         {
-            san.sanity += 10;
+            san.Insanity(10);
         }
         if (a == 4)
         {
-            if (multiplier)
-            {
-                san.sanity -= 10 * 2;
-            }
-            else if (division)
-            {
-                san.sanity -= 10 / 2;
-            }
-            else
-            {
-                san.sanity -= 10;
-            }
+            san.Insanity(-10);
         }
         if (a == 5)
         {
-            san.sanity += 5;
+            san.Insanity(5);
         }
         if (a == 6)
         {
