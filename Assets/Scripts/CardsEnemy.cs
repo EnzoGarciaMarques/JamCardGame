@@ -36,24 +36,25 @@ public class CardsEnemy : MonoBehaviour
         if (transform.position == playPos.position && !update)
         {
             update = true;
+            manager.turn += 1;
             manager.canPlay = true;
+            
         }
         if (steal)
         {
             transform.position = Vector3.MoveTowards(transform.position, start.position, velocity * Time.deltaTime);
-            if(transform.position == start.position)
-            {
-                steal = false;
-                Play();           
-            }
         }
-        
+        if (transform.position == start.position && steal)
+        {
+            steal = false;
+            Play();
+        }
+
     }
     public void Play()
     {
         manager.canPlay = false;
-        placedTurn = manager.turn;
-        manager.turn += 1;
+        placedTurn = manager.turn; 
         playedCard = true;
         sr.sortingOrder = play.layer;
         play.type = type;

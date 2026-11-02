@@ -8,6 +8,7 @@ public class Cards : MonoBehaviour
 {
     [SerializeField] int type;
     [SerializeField] int color;
+    [SerializeField] int effect;
     [SerializeField] bool playedCard = false;
     [SerializeField] TextMeshProUGUI description;
     [SerializeField] string descriptiontxt;
@@ -19,11 +20,17 @@ public class Cards : MonoBehaviour
     public GameManager manager;
     public int handIndex;
     SpriteRenderer sr;
+    public SunCards sun;
+    public LakeCards lake;
 
     private void Start()
     {
         your = FindAnyObjectByType<YourCards>();
         play = FindAnyObjectByType<PlayedCard>();
+        sun = FindAnyObjectByType<SunCards>();
+        lake = FindAnyObjectByType<LakeCards>();
+        //sun = FindAnyObjectByType<SunCards>();
+        //sun = FindAnyObjectByType<SunCards>();
         manager = FindAnyObjectByType<GameManager>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -37,6 +44,10 @@ public class Cards : MonoBehaviour
         {
             update = true;
             manager.canPlay = true;
+            if (type == 1)
+            {
+                sun.Ability(effect);
+            }
         }
     }
     private void OnMouseDown()
@@ -48,6 +59,7 @@ public class Cards : MonoBehaviour
                 manager.canPlay = false;
                 manager.turn += 1;
                 playedCard = true;
+                lake.notInHand += 1;
                 sr.sortingOrder = play.layer;
                 play.type = type;
                 play.color = color;

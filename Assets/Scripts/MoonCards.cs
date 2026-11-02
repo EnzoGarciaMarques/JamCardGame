@@ -11,10 +11,6 @@ public class MoonCards : MonoBehaviour
     {
         manager = FindAnyObjectByType<GameManager>();
     }
-    private void OnMouseDown()
-    {
 
-
-    }
 }
 

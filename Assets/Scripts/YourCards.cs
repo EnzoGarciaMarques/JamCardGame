@@ -16,6 +16,7 @@ public class YourCards : MonoBehaviour
     public Sanity san;
     public GameManager manager;
     bool first = true;
+    public LakeCards lake;
     private void Awake()
     {
         if (instance != null)
@@ -31,6 +32,7 @@ public class YourCards : MonoBehaviour
     {
         manager = FindAnyObjectByType<GameManager>();
         san = FindAnyObjectByType<Sanity>();
+        lake = FindAnyObjectByType<LakeCards>();
     }
     private void OnMouseDown()
     {
@@ -44,6 +46,7 @@ public class YourCards : MonoBehaviour
                 {
                     randCard.gameObject.SetActive(true);
                     randCard.handIndex = i;
+                    lake.notInHand -= 1;
                     randCard.transform.position = gameObject.transform.position;
                     while (randCard.transform.position != slots[i].position)
                     {

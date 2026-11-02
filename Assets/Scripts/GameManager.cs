@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI number;
     public static GameManager instance;
     public SunCards sun;
+    public LakeCards lake;
     private void Awake()
     {
         if (instance != null)
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         }
 
         sun = FindAnyObjectByType<SunCards>();
+        lake = FindAnyObjectByType<LakeCards>();
     }
     private void Update()
     {
@@ -33,7 +35,11 @@ public class GameManager : MonoBehaviour
             turn = 1;
             if (sun.roundsPass == 0)
             {
-                sun.roundsPass = 1;
+                sun.roundsPass += 1;
+            }
+            if (lake.lakePass == 0)
+            {
+                lake.lakePass += 1;
             }
         }
     }
