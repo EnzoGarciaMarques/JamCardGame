@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyCards : MonoBehaviour
 {
     public List<CardsEnemy> deck;
+    public List<CardsEnemy> pileCenter;
     public static EnemyCards instance;
     public GameManager manager;
     public PlayedCard play;
+    public int tries;
     private void Awake()
     {
         if (instance != null)
@@ -26,17 +28,30 @@ public class EnemyCards : MonoBehaviour
     }
     private void Update()
     {
-        if (manager.turn % 2 == 0 && manager.canPlay)
+        if (manager.turn % 2 == 0 && manager.canPlay == true)
         {
             CardsEnemy randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
-            while (randCard.type != play.type || randCard.color != play.color)
+            for (tries = 1; tries <= 16; tries++)
             {
+                if (randCard.type == play.type || randCard.color == play.color)
+                {
+                    randCard.gameObject.SetActive(true);
+                    randCard.Play();
+                    deck.Remove(randCard);
+                    return;
+                }
                 randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
             }
+            if (tries > 16)
+            {
+                CardsEnemy randSteal = pileCenter[UnityEngine.Random.Range(0, pileCenter.Count)];
+                while (randSteal.type == play.type || randSteal.color == play.color)
+                {
+                    randSteal = deck[UnityEngine.Random.Range(0, deck.Count)];
+                }
 
-            randCard.gameObject.SetActive(true);
-            randCard.Play();
-            deck.Remove(randCard);
+                randSteal.steal = true;
+            }
         }
     }
 }

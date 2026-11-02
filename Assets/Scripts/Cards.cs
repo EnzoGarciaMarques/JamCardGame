@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -8,7 +9,9 @@ public class Cards : MonoBehaviour
     [SerializeField] int type;
     [SerializeField] int color;
     [SerializeField] bool playedCard = false;
-    [SerializeField] float velocity;
+    [SerializeField] TextMeshProUGUI description;
+    [SerializeField] string descriptiontxt;
+    public float velocity;
     [SerializeField] Transform playPos;
     private bool update = false;
     public PlayedCard play;
@@ -32,7 +35,7 @@ public class Cards : MonoBehaviour
         }
         if (transform.position == playPos.position && !update)
         {
-            update = false;
+            update = true;
             manager.canPlay = true;
         }
     }
@@ -53,6 +56,13 @@ public class Cards : MonoBehaviour
                 play.layer += 1;
             }
         }
-
+    }
+    private void OnMouseOver()
+    {
+        description.text = descriptiontxt;
+    }
+    private void OnMouseExit()
+    {
+        description.text = "";
     }
 }
