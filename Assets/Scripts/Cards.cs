@@ -116,6 +116,11 @@ public class Cards : MonoBehaviour
                     sr.sortingOrder = play.layer;
                     play.type = type;
                     play.color = color;
+                    if (effect == 2 && type == 4) 
+                    {
+                        play.type = 0;
+                        play.color = 0;
+                    }
                     your.pileCenter.Add(this);
                     your.available[handIndex] = true;
                     play.layer += 1;

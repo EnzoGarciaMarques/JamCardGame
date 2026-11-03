@@ -41,8 +41,6 @@ public class MoonCards : MonoBehaviour
         }
         if (a == 2)
         {
-            play.color = 0;
-            play.type = 0;
             panel.SetActive(true);
         }
         if (a == 3)
