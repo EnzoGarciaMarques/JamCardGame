@@ -12,8 +12,11 @@ public class Sanity : MonoBehaviour
     [SerializeField] TextMeshProUGUI amount;
     [SerializeField] RawImage blink;
     bool blinked = false;
+    public int shield;
     public static Sanity instance;
     public LakeCards lake;
+    public FlorestCards florest;
+    [SerializeField] Image changeColor;
     private void Awake()
     {
         if (instance != null)
@@ -26,29 +29,54 @@ public class Sanity : MonoBehaviour
         }
 
         lake = FindAnyObjectByType<LakeCards>();
+        florest = FindAnyObjectByType<FlorestCards>();
     }
     private void Update()
     {
         slider.value = sanity;
         amount.text = sanity + "%";
+        if (sanity > 100)
+        {
+            sanity = 100;
+        }
         if (sanity <= 50 && !blinked)
         {
             StartCoroutine(Blink());
         }
-    }
-    public void Insanity(int a)
-    {
-        if (lake.multiplier)
+        if (shield >= 1)
         {
-            sanity += a * 2;
-        }
-        else if (lake.division)
-        {
-            sanity += a / 2;
+            changeColor.material.color = Color.blue;
         }
         else
         {
-            sanity += a;
+            changeColor.material.color = Color.purple;
+        }
+    }
+    public void Insanity(int a)
+    {
+        if (shield <= 0)
+        {
+            if (florest.invert)
+            {
+                a *= -1;
+            }
+            if (lake.multiplier)
+            {
+                sanity += a * 2;
+            }
+            else if (lake.division)
+            {
+                sanity += a / 2;
+            }
+            else
+            {
+                sanity += a;
+            }
+            florest.invert = false;
+        }
+        else
+        {
+            shield -= 1;
         }
     }
     IEnumerator Blink()

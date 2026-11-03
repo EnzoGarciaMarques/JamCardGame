@@ -48,7 +48,17 @@ public class SunCards : MonoBehaviour
         {
             manager.roundsMax += 3;
         }
+        if (a == 5)
+        {
+            manager.roundPlus = 1;
+            san.sanity += 10;
+        }
         if (a == 6)
+        {
+            manager.roundPlus = 1;
+            san.sanity -= 10;
+        }
+        if (a == 7)
         {
             manager.roundPlus = 2;
             roundsPass = 0;

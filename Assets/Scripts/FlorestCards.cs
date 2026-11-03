@@ -2,15 +2,63 @@ using UnityEngine;
 
 public class FlorestCards : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameManager manager;
+    public PlayedCard play;
+    public Cards card;
+    public bool notPlayer =  false;
+    public bool notEnemy = false;
+    public bool invert = false;
+    public static FlorestCards instance;
+    public Sanity san;
+    public YourCards your;
+    private void Awake()
     {
-        
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+    private void Start()
+    {
+        manager = FindAnyObjectByType<GameManager>();
+        san = FindAnyObjectByType<Sanity>();
+        your = FindAnyObjectByType<YourCards>();
+    }
+    public void Ability(int a)
+    {
+        if (a == 1)
+        {
+            san.shield = 1;
+        }
+        if (a == 2)
+        {
+            san.shield = 0;
+        }
+        if (a == 3)
+        {
+            notEnemy = true;
+        }
+        if (a == 4)
+        {
+            notPlayer = true;
+        }
+        if (a == 6)
+        {
+            invert = true;
+        }
+        if (a == 7)
+        {
+            san.Insanity(5);
+        }
+        if (a == 8)
+        {
+            san.Insanity(-10);
+            san.shield = 2;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
