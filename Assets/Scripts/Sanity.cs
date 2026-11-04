@@ -16,6 +16,9 @@ public class Sanity : MonoBehaviour
     public static Sanity instance;
     public LakeCards lake;
     public FlorestCards florest;
+    public CameraShake cam;
+    [SerializeField] float shakeTime;
+    [SerializeField] float shakeIntensity;
     [SerializeField] Image changeColor;
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class Sanity : MonoBehaviour
         }
 
         lake = FindAnyObjectByType<LakeCards>();
+        cam = FindAnyObjectByType<CameraShake>();
         florest = FindAnyObjectByType<FlorestCards>();
     }
     private void Update()
@@ -71,6 +75,14 @@ public class Sanity : MonoBehaviour
             else
             {
                 sanity += a;
+            }
+            if (a >= 0)
+            {
+                florest.lessInsanity = true;
+            }
+            else
+            {
+                cam.Shake(shakeTime, shakeIntensity);
             }
             florest.invert = false;
         }

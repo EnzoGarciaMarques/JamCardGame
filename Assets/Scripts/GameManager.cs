@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public SunCards sun;
     public LakeCards lake;
+    public FlorestCards florest;
+    public EnemyCards enemy;
+    public YourCards your;
     private void Awake()
     {
         if (instance != null)
@@ -22,9 +25,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
+        your = FindAnyObjectByType<YourCards>();
+        enemy = FindAnyObjectByType<EnemyCards>();
         sun = FindAnyObjectByType<SunCards>();
         lake = FindAnyObjectByType<LakeCards>();
+        florest = FindAnyObjectByType<FlorestCards>();
     }
     private void Update()
     {
@@ -33,6 +38,7 @@ public class GameManager : MonoBehaviour
         {
             roundsMin += roundPlus;
             turn = 1;
+            florest.lessInsanity = false;
             if (sun.roundsPass == 0)
             {
                 sun.roundsPass += 1;

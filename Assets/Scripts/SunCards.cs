@@ -64,12 +64,20 @@ public class SunCards : MonoBehaviour
             roundsPass = 0;
             roundsEnd = (60 - san.sanity)/10;
         }
+        if (a == 8)
+        {
+            manager.roundPlus = 1;
+        }
     }
     private void Update()
     {
         if (roundsPass == roundsEnd)
         {
             manager.roundPlus = 1;
+        }
+        if(roundsEnd <= 0)
+        {
+            roundsEnd = 0;
         }
     }
 }

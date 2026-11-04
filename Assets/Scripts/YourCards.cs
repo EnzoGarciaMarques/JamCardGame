@@ -1,8 +1,11 @@
+using NUnit.Framework.Internal;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -19,8 +22,11 @@ public class YourCards : MonoBehaviour
     public GameManager manager;
     bool first = true;
     public LakeCards lake;
+    InputSystem_Actions input;
+
     private void Awake()
     {
+        input = new InputSystem_Actions();
         if (instance != null)
         {
             Destroy(instance);
@@ -30,20 +36,22 @@ public class YourCards : MonoBehaviour
             instance = this;
         }
     }
+
+    private void OnEnable()
+    {
+        input.Card.Play.performed += Play;
+        input.Card.Enable();
+    }
+    private void OnDisable()
+    {
+        input.Card.Play.performed -= Play;
+        input.Card.Disable();
+    }
     private void Start()
     {
         manager = FindAnyObjectByType<GameManager>();
         san = FindAnyObjectByType<Sanity>();
         lake = FindAnyObjectByType<LakeCards>();
-    }
-    private void OnMouseDown()
-    {
-        if (deck.Count >= 1)
-        {
-            san.Insanity(sanity);
-            sanity = -5;
-            Buy();
-        }
     }
     private void Update()
     {
@@ -102,6 +110,24 @@ public class YourCards : MonoBehaviour
 
         }
         pileCenter.Clear();
+    }
+    void Play(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+
+        if (hit.collider != null && hit.transform == transform)
+        {
+            if (deck.Count >= 1)
+            {
+                san.Insanity(sanity);
+                sanity = -5;
+                Buy();
+            }
+        }
     }
 }
         

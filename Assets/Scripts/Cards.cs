@@ -31,8 +31,6 @@ public class Cards : MonoBehaviour
     private void Awake()
     {
         input = new InputSystem_Actions();
-        input.Card.Play.performed += Play;
-        input.Card.Rip.performed += Rip;
     }
 
     private void OnEnable()
@@ -140,7 +138,7 @@ public class Cards : MonoBehaviour
         {
             if (type == 3 && effect == 7)
             {
-                sun.Ability(effect);
+                florest.Ability(effect);
             }
             description.text = "";
             your.sanity = 0;

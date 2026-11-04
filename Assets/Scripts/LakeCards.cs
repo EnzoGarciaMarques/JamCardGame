@@ -58,14 +58,14 @@ public class LakeCards : MonoBehaviour
             san.Insanity(-5);
 
         }  
-        if (a == 7)
+        if (a == 8)
         {
             division = false;
             multiplier = true;
             lakePass = 0;
             roundsEnd = 2;
         }
-        if (a == 8)
+        if (a == 7)
         {
             division = true;
             multiplier = false;

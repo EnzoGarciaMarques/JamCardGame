@@ -31,7 +31,7 @@ public class EnemyCards : MonoBehaviour
         if (manager.turn % 2 == 0 && manager.canPlay == true && play.color != 0)
         {
             CardsEnemy randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
-            for (tries = 1; tries <= 16; tries++)
+            for (tries = 1; tries <= 32; tries++)
             {
                 if (randCard.type == play.type || randCard.color == play.color)
                 {
@@ -42,14 +42,14 @@ public class EnemyCards : MonoBehaviour
                 }
                 randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
             }
-            if (tries >= 16)
+            if (tries >= 32)
             {
                 CardsEnemy randSteal = pileCenter[UnityEngine.Random.Range(0, pileCenter.Count)];
                 while (randSteal.type == play.type || randSteal.color == play.color)
                 {
                     randSteal = deck[UnityEngine.Random.Range(0, deck.Count)];
                 }
-
+                randSteal.gameObject.SetActive(true);
                 randSteal.steal = true;
             }
         }

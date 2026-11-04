@@ -40,19 +40,31 @@ public class CardsEnemy : MonoBehaviour
     }
     private void Update()
     {
-        if (playPos != null && playedCard)
+        if (playPos != null && playedCard && !steal)
         {
             transform.position = Vector3.MoveTowards(transform.position, playPos.position, velocity * Time.deltaTime);
         }
         if (transform.position == playPos.position && !update)
         {
+            description.text = descriptiontxt;
             update = true;
-            manager.canPlay = true;
             if (!florest.notEnemy || effect != 0 || !moon.noOnePLays)
             {
                 if (type == 1)
                 {
                     sun.Ability(effect);
+                }
+                else if (type == 2)
+                {
+                    lake.Ability(effect);
+                }
+                else if (type == 3 && effect != 7)
+                {
+                    florest.Ability(effect);
+                }
+                else if (type == 4)
+                {
+                    moon.Ability(effect);
                 }
             }
             else
@@ -61,6 +73,7 @@ public class CardsEnemy : MonoBehaviour
             }
             manager.turn += 1;
             moon.moonPass += 1;
+            manager.canPlay = true;
 
         }
         if (steal)
@@ -69,10 +82,10 @@ public class CardsEnemy : MonoBehaviour
         }
         if (transform.position == start.position && steal)
         {
+            update = false;
             steal = false;
             Play();
         }
-
     }
     public void Play()
     {
@@ -84,13 +97,5 @@ public class CardsEnemy : MonoBehaviour
         play.color = color;
         enemy.pileCenter.Add(this);
         play.layer += 1;
-    }
-    private void OnMouseOver()
-    {
-        description.text = descriptiontxt;
-    }
-    private void OnMouseExit()
-    {
-        description.text = "";
     }
 }

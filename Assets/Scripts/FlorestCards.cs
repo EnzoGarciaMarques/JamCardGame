@@ -8,6 +8,7 @@ public class FlorestCards : MonoBehaviour
     public bool notPlayer =  false;
     public bool notEnemy = false;
     public bool invert = false;
+    public bool lessInsanity = false;
     public static FlorestCards instance;
     public Sanity san;
     public YourCards your;
@@ -55,6 +56,14 @@ public class FlorestCards : MonoBehaviour
             san.Insanity(5);
         }
         if (a == 8)
+        {
+            if (lessInsanity)
+            {
+                san.Insanity(20);
+                lessInsanity = false;
+            }
+        }
+        if (a == 9)
         {
             san.Insanity(-10);
             san.shield = 2;
