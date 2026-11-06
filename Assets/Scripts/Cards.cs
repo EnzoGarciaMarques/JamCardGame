@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -8,12 +9,14 @@ using UnityEngine.VFX;
 public class Cards : MonoBehaviour
 {
     [SerializeField] int type;
+    [SerializeField] AudioClip playClip;
     [SerializeField] int color;
     [SerializeField] int effect;
     [SerializeField] bool playedCard = false;
     [SerializeField] TextMeshProUGUI description;
     [SerializeField] string descriptiontxt;
     public float velocity;
+    public int sanity = 0;
     [SerializeField] Transform playPos;
     private bool update = false;
     public PlayedCard play;
@@ -49,7 +52,6 @@ public class Cards : MonoBehaviour
     {
         your = FindAnyObjectByType<YourCards>();
         play = FindAnyObjectByType<PlayedCard>();
-        sun = FindAnyObjectByType<SunCards>();
         lake = FindAnyObjectByType<LakeCards>();
         florest = FindAnyObjectByType<FlorestCards>();
         moon = FindAnyObjectByType<MoonCards>();
@@ -64,8 +66,10 @@ public class Cards : MonoBehaviour
         }
         if (transform.position == playPos.position && !update)
         {
+            manager.canPlay = true;
+            playedCard = false;
             update = true;
-            if (!florest.notPlayer || effect != 0 || !moon.noOnePLays)
+            if (!florest.notPlayer && effect != 0 && !moon.noOnePLays)
             {
                 if (type == 1)
                 {
@@ -90,7 +94,6 @@ public class Cards : MonoBehaviour
             }
             manager.turn += 1;
             moon.moonPass += 1;
-            manager.canPlay = true;
         }
     }
 
@@ -108,13 +111,14 @@ public class Cards : MonoBehaviour
             {
                 if (manager.turn % 2 != 0 && manager.canPlay)
                 {
+                    SFXManagement.Instance.PlaySoundFXClip(playClip, transform, 1f);
                     manager.canPlay = false;
                     playedCard = true;
                     lake.notInHand += 1;
                     sr.sortingOrder = play.layer;
                     play.type = type;
                     play.color = color;
-                    if (effect == 2 && type == 4) 
+                    if (effect == 2 && type == 4 && !florest.notPlayer && !moon.noOnePLays) 
                     {
                         play.type = 0;
                         play.color = 0;
@@ -136,12 +140,16 @@ public class Cards : MonoBehaviour
 
         if (hit.collider != null && hit.transform == transform)
         {
+            manager.Anima();
             if (type == 3 && effect == 7)
             {
                 florest.Ability(effect);
             }
             description.text = "";
-            your.sanity = 0;
+            if (effect != 12)
+            {
+                your.sanity = 0;
+            }
             lake.notInHand += 1;
             your.ripped.Add(this);
             your.available[handIndex] = true;

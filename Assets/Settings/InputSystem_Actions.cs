@@ -687,6 +687,16 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""rules"",
+                    ""type"": ""Button"",
+                    ""id"": ""d40c6442-315e-4f03-950a-4f060e63ea60"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -753,6 +763,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f802010a-3eec-478b-a470-dbd7d8bcdbcf"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rules"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -842,6 +863,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player2D = asset.FindActionMap("Player2D", throwIfNotFound: true);
         m_Player2D_WASD = m_Player2D.FindAction("WASD", throwIfNotFound: true);
         m_Player2D_interact = m_Player2D.FindAction("interact", throwIfNotFound: true);
+        m_Player2D_rules = m_Player2D.FindAction("rules", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1228,6 +1250,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IPlayer2DActions> m_Player2DActionsCallbackInterfaces = new List<IPlayer2DActions>();
     private readonly InputAction m_Player2D_WASD;
     private readonly InputAction m_Player2D_interact;
+    private readonly InputAction m_Player2D_rules;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player2D".
     /// </summary>
@@ -1247,6 +1270,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player2D/interact".
         /// </summary>
         public InputAction @interact => m_Wrapper.m_Player2D_interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Player2D/rules".
+        /// </summary>
+        public InputAction @rules => m_Wrapper.m_Player2D_rules;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1279,6 +1306,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @interact.started += instance.OnInteract;
             @interact.performed += instance.OnInteract;
             @interact.canceled += instance.OnInteract;
+            @rules.started += instance.OnRules;
+            @rules.performed += instance.OnRules;
+            @rules.canceled += instance.OnRules;
         }
 
         /// <summary>
@@ -1296,6 +1326,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @interact.started -= instance.OnInteract;
             @interact.performed -= instance.OnInteract;
             @interact.canceled -= instance.OnInteract;
+            @rules.started -= instance.OnRules;
+            @rules.performed -= instance.OnRules;
+            @rules.canceled -= instance.OnRules;
         }
 
         /// <summary>
@@ -1515,5 +1548,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "rules" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRules(InputAction.CallbackContext context);
     }
 }

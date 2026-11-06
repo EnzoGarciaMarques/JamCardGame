@@ -30,27 +30,23 @@ public class EnemyCards : MonoBehaviour
     {
         if (manager.turn % 2 == 0 && manager.canPlay == true && play.color != 0)
         {
-            CardsEnemy randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
-            for (tries = 1; tries <= 32; tries++)
+
+            for (int i = 0; i < deck.Count; i++)
+            {
+                int randomIndex = UnityEngine.Random.Range(i, deck.Count);
+
+                CardsEnemy temp = deck[i];
+                deck[i] = deck[randomIndex];
+                deck[randomIndex] = temp;
+            }
+            foreach (CardsEnemy randCard in deck)
             {
                 if (randCard.type == play.type || randCard.color == play.color)
                 {
                     randCard.gameObject.SetActive(true);
                     randCard.Play();
-                    deck.Remove(randCard);
                     return;
                 }
-                randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
-            }
-            if (tries >= 32)
-            {
-                CardsEnemy randSteal = pileCenter[UnityEngine.Random.Range(0, pileCenter.Count)];
-                while (randSteal.type == play.type || randSteal.color == play.color)
-                {
-                    randSteal = deck[UnityEngine.Random.Range(0, deck.Count)];
-                }
-                randSteal.gameObject.SetActive(true);
-                randSteal.steal = true;
             }
         }
     }

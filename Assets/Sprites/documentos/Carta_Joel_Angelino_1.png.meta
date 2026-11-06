@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f773b41ae37ab5c46bf3476dad229df5
+guid: dc25b7b183ab4ea499663fa7be89be9e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6244714013304192438
-    second: Carta_Joel_Angelino_0
+      213: 1233999843969925407
+    second: Carta_Joel_Angelino_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carta_Joel_Angelino_0
+      name: Carta_Joel_Angelino_1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a428919d0b15659a0800000000000000
-      internalID: -6244714013304192438
+      spriteID: f1107b0f15c002110800000000000000
+      internalID: 1233999843969925407
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Carta_Joel_Angelino_0: -6244714013304192438
+      Carta_Joel_Angelino_1_0: 1233999843969925407
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

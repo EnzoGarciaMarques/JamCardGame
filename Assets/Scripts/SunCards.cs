@@ -51,12 +51,12 @@ public class SunCards : MonoBehaviour
         if (a == 5)
         {
             manager.roundPlus = 1;
-            san.sanity += 10;
+            san.Insanity(10);
         }
         if (a == 6)
         {
             manager.roundPlus = 1;
-            san.sanity -= 10;
+            san.Insanity(-10);
         }
         if (a == 7)
         {
@@ -67,6 +67,10 @@ public class SunCards : MonoBehaviour
         if (a == 8)
         {
             manager.roundPlus = 1;
+        }
+        if (a == 9)
+        {
+            manager.roundsMax += 4;
         }
     }
     private void Update()

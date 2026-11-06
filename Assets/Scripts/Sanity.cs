@@ -49,7 +49,7 @@ public class Sanity : MonoBehaviour
         }
         if (shield >= 1)
         {
-            changeColor.material.color = Color.blue;
+            changeColor.material.color = Color.lightBlue;
         }
         else
         {
@@ -58,38 +58,38 @@ public class Sanity : MonoBehaviour
     }
     public void Insanity(int a)
     {
-        if (shield <= 0)
+        if (florest.invert)
         {
-            if (florest.invert)
-            {
-                a *= -1;
-            }
-            if (lake.multiplier)
-            {
-                sanity += a * 2;
-            }
-            else if (lake.division)
-            {
-                sanity += a / 2;
-            }
-            else
-            {
-                sanity += a;
-            }
-            if (a >= 0)
-            {
-                florest.lessInsanity = true;
-            }
-            else
-            {
-                cam.Shake(shakeTime, shakeIntensity);
-            }
+            a *= -1;
             florest.invert = false;
+        }
+        if(a <= 0)
+        {
+            if(shield >= 1)
+            {
+                shield -= 1;
+                return;
+            }
         }
         else
         {
-            shield -= 1;
+            florest.lessInsanity = true;
         }
+        if (lake.multiplier >= 1)
+        {
+            sanity += a * 2;
+            lake.multiplier -= 1;
+        }
+        else if (lake.division >= 1)
+        {
+            sanity += a / 2;
+            lake.division -= 1;
+        }
+        else
+        {
+            sanity += a;
+        }
+        cam.Shake(shakeTime, shakeIntensity);
     }
     IEnumerator Blink()
     {

@@ -33,7 +33,7 @@ public class FlorestCards : MonoBehaviour
     {
         if (a == 1)
         {
-            san.shield = 1;
+            san.shield += 1;
         }
         if (a == 2)
         {
@@ -59,13 +59,18 @@ public class FlorestCards : MonoBehaviour
         {
             if (lessInsanity)
             {
-                san.Insanity(20);
+                san.Insanity(-20);
                 lessInsanity = false;
             }
         }
         if (a == 9)
         {
-            san.Insanity(-10);
+            san.Insanity(-15);
+            san.shield = 2;
+        }
+        if (a == 10)
+        {
+            san.Insanity(-5);
             san.shield = 2;
         }
     }

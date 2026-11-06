@@ -48,7 +48,7 @@ public class MoonCards : MonoBehaviour
         }
         if (a == 6)
         {
-            manager.turn = 2;
+            manager.turn = 1;
         }
         if (a == 2)
         {
@@ -58,7 +58,7 @@ public class MoonCards : MonoBehaviour
         if (a == 3)
         {
             noOnePLays = true;
-            moonPass = 0;
+            moonPass = -1;
             roundsEnd = 2;
         }
         if (a == 4)
@@ -67,35 +67,11 @@ public class MoonCards : MonoBehaviour
         }
         if(a == 5)
         {
-            int b = UnityEngine.Random.Range(1, 5);
-            if(b == 1)
-            {
-                play.color = 1;
-                card1.gameObject.SetActive(true);
-                play.layer += 1;
-                card1.sortingOrder = play.layer;
-            }
-            else if (b == 2)
-            {
-                play.color = 2;
-                card2.gameObject.SetActive(true);
-                play.layer += 1;
-                card2.sortingOrder = play.layer;
-            }
-            else if (b == 3)
-            {
-                play.color = 3;
-                card3.gameObject.SetActive(true);
-                play.layer += 1;
-                card3.sortingOrder = play.layer;
-            }
-            else
-            {
-                play.color = 4;
-                card4.gameObject.SetActive(true);
-                play.layer += 1;
-                card4.sortingOrder = play.layer;
-            }
+            your.sanity = -15;
+        }
+        if (a == 12)
+        {
+            your.sanity = 10;
         }
     }
     private void Update()

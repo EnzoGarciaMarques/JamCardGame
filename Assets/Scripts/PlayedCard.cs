@@ -17,8 +17,4 @@ public class PlayedCard : MonoBehaviour
             instance = this;
         }
     }
-    private void OnMouseDown()
-    {
-        
-    }
 }

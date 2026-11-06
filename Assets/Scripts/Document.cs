@@ -21,21 +21,11 @@ public class Document : MonoBehaviour
 
         Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            (RectTransform)canvas.transform,
-            mousePosition,
-            canvas.renderMode == RenderMode.ScreenSpaceOverlay
-                ? null : canvas.worldCamera,
-            out Vector2 localMousePosition
-        );
+        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform,mousePosition,canvas.renderMode == RenderMode.ScreenSpaceOverlay? null : canvas.worldCamera,out Vector2 localMousePosition);
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(
-                rectTransform,
-                mousePosition,
-                canvas.renderMode == RenderMode.ScreenSpaceOverlay
-                    ? null : canvas.worldCamera))
+            if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform,mousePosition,canvas.renderMode == RenderMode.ScreenSpaceOverlay? null : canvas.worldCamera))
             {
                 difference = (Vector2)rectTransform.localPosition - localMousePosition;
                 isDragging = true;

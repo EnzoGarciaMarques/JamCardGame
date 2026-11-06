@@ -5,14 +5,38 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Toy Store.unity
-    guid: f0c55024352b90242b9d42a993c0562e
+    path: Assets/_Recovery/Menu.unity
+    guid: 978959feafd54114cbe9446d30238221
   - enabled: 1
-    path: Assets/_Recovery/0.unity
+    path: Assets/_Recovery/Toy Store.unity
+    guid: 417e489ed203f834d97e6332f6f3d989
+  - enabled: 1
+    path: Assets/_Recovery/1.unity
     guid: bfbfeb9664c963a41b251a77d63c5d19
+  - enabled: 1
+    path: Assets/_Recovery/Toy Store 1.unity
+    guid: a3acb0584c10d8c4c972af26c4c478c0
+  - enabled: 1
+    path: Assets/_Recovery/Toy Store 2.unity
+    guid: c79dc9793615dbc4cb64dddc04904183
+  - enabled: 1
+    path: Assets/_Recovery/2.unity
+    guid: 5ad89f1a5bfecbd419cbc33172b72952
+  - enabled: 1
+    path: Assets/_Recovery/Toy Store 3.unity
+    guid: 71e0b1d238b790844968a7d39ce3338c
+  - enabled: 1
+    path: Assets/_Recovery/Toy Store 4.unity
+    guid: ad6f033d948b59143a81002d5e7879d1
+  - enabled: 1
+    path: Assets/_Recovery/3.unity
+    guid: 490c38d864eed614daf0e23a253c7813
+  - enabled: 1
+    path: Assets/_Recovery/Toy Store 5.unity
+    guid: ae630e282c4bdfc459b73d9bb29f3957
+  - enabled: 1
+    path: Assets/_Recovery/Cabra.unity
+    guid: eba46b625b977d04e99eefe18a770316
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

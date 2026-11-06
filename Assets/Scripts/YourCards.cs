@@ -14,6 +14,8 @@ public class YourCards : MonoBehaviour
     public List<Cards> deck;
     public List<Cards> pileCenter;
     public List<Cards> ripped;
+    [SerializeField] AudioClip shuffleClip;
+    [SerializeField] AudioClip playClip;
     public int sanity;
     [SerializeField] Transform[] slots;
     public bool[] available;
@@ -88,6 +90,10 @@ public class YourCards : MonoBehaviour
         {
             if (available[i] == true && manager.turn % 2 != 0)
             {
+                lake.notInHand -= 1;
+                SFXManagement.Instance.PlaySoundFXClip(playClip, transform, 1f);
+                san.Insanity(sanity);
+                sanity = -5;
                 randCard.gameObject.SetActive(true);
                 randCard.handIndex = i;
                 randCard.transform.position = gameObject.transform.position;
@@ -109,6 +115,7 @@ public class YourCards : MonoBehaviour
             card.gameObject.SetActive(false);
 
         }
+        SFXManagement.Instance.PlaySoundFXClip(shuffleClip, transform, 1f);
         pileCenter.Clear();
     }
     void Play(InputAction.CallbackContext ctx)
@@ -123,8 +130,6 @@ public class YourCards : MonoBehaviour
         {
             if (deck.Count >= 1)
             {
-                san.Insanity(sanity);
-                sanity = -5;
                 Buy();
             }
         }

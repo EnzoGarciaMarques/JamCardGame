@@ -13,7 +13,7 @@ public class CardsEnemy : MonoBehaviour
     [SerializeField] string descriptiontxt;
     public float velocity;
     [SerializeField] Transform playPos;
-    [SerializeField] Transform start;
+    public Transform start;
     private bool update = false;
     [SerializeField] int effect;
     private int placedTurn;
@@ -26,6 +26,7 @@ public class CardsEnemy : MonoBehaviour
     public SunCards sun;
     public MoonCards moon;
     public FlorestCards florest;
+    [SerializeField] AudioClip playClip;
 
     private void Start()
     {
@@ -33,7 +34,6 @@ public class CardsEnemy : MonoBehaviour
         manager = FindAnyObjectByType<GameManager>();
         enemy = FindAnyObjectByType<EnemyCards>();
         sr = GetComponent<SpriteRenderer>();
-        sun = FindAnyObjectByType<SunCards>();
         florest = FindAnyObjectByType<FlorestCards>();
         lake = FindAnyObjectByType<LakeCards>();
         moon = FindAnyObjectByType<MoonCards>();
@@ -48,7 +48,7 @@ public class CardsEnemy : MonoBehaviour
         {
             description.text = descriptiontxt;
             update = true;
-            if (!florest.notEnemy || effect != 0 || !moon.noOnePLays)
+            if (!florest.notEnemy && effect != 0 && !moon.noOnePLays)
             {
                 if (type == 1)
                 {
@@ -76,26 +76,22 @@ public class CardsEnemy : MonoBehaviour
             manager.canPlay = true;
 
         }
-        if (steal)
+        if (sr.sortingOrder == play.layer - 3 && playedCard)
         {
-            transform.position = Vector3.MoveTowards(transform.position, start.position, velocity * Time.deltaTime);
-        }
-        if (transform.position == start.position && steal)
-        {
-            update = false;
-            steal = false;
-            Play();
+            playedCard = false;
+            transform.position = start.position;
         }
     }
     public void Play()
     {
+        Debug.Log("joguei");
+        SFXManagement.Instance.PlaySoundFXClip(playClip, transform, 1f);
         manager.canPlay = false;
         placedTurn = manager.turn; 
         playedCard = true;
         sr.sortingOrder = play.layer;
         play.type = type;
         play.color = color;
-        enemy.pileCenter.Add(this);
         play.layer += 1;
     }
 }

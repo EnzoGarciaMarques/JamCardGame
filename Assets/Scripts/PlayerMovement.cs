@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMovement;
     float verticalMovement;
     [SerializeField] private SpriteRenderer sr;
+    Animator anim;
     InputSystem_Actions input;
 
     private void Awake()
     {
         input = new InputSystem_Actions();
+        anim = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -41,6 +43,14 @@ public class PlayerMovement : MonoBehaviour
         else if (horizontalMovement < 0)
         {
             sr.flipX = true;
+        }
+        if(horizontalMovement != 0 || verticalMovement != 0)
+        {
+            anim.SetBool("walk", true);
+        }
+        else
+        {
+            anim.SetBool("walk", false);
         }
     }
 

@@ -8,8 +8,8 @@ public class LakeCards : MonoBehaviour
     public int lakePass;
     public int roundsEnd;
     public Cards card;
-    public bool multiplier;
-    public bool division;
+    public int multiplier;
+    public int division;
     int round;
     public static LakeCards instance;
     public Sanity san;
@@ -35,7 +35,7 @@ public class LakeCards : MonoBehaviour
     {
         if (a == 1)
         {
-            san.Insanity(10 * notInHand);
+            san.Insanity(5 * notInHand);
         }
         if (a == 2)
         {
@@ -60,25 +60,20 @@ public class LakeCards : MonoBehaviour
         }  
         if (a == 8)
         {
-            division = false;
-            multiplier = true;
+            division = 0;
+            multiplier = 2;
             lakePass = 0;
             roundsEnd = 2;
         }
         if (a == 7)
         {
-            division = true;
-            multiplier = false;
+            division = 2;
+            multiplier = 0;
             lakePass = 0;
             roundsEnd = 2;
         }
     }
     private void Update()
     {
-        if (lakePass == roundsEnd)
-        {
-            multiplier = false;
-            division = false;
-        }
     }
 }
