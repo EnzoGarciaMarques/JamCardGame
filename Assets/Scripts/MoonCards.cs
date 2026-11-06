@@ -20,6 +20,7 @@ public class MoonCards : MonoBehaviour
     public bool noOnePLays = false;
     public bool nextEnemy = false;
     public bool nextPlayer = false;
+    public bool boitata = false;
     public Sanity san;
     public YourCards your;
     private void Awake()
@@ -44,7 +45,7 @@ public class MoonCards : MonoBehaviour
     {
         if (a == 1)
         {
-            manager.turn += 1;
+            manager.turn = 2;
         }
         if (a == 6)
         {
@@ -67,11 +68,11 @@ public class MoonCards : MonoBehaviour
         }
         if(a == 5)
         {
-            your.sanity = -15;
+            boitata = true;
         }
         if (a == 12)
         {
-            your.sanity = 10;
+            boitata = false;
         }
     }
     private void Update()

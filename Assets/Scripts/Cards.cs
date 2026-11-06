@@ -66,7 +66,6 @@ public class Cards : MonoBehaviour
         }
         if (transform.position == playPos.position && !update)
         {
-            manager.canPlay = true;
             playedCard = false;
             update = true;
             if (!florest.notPlayer && effect != 0 && !moon.noOnePLays)
@@ -94,6 +93,7 @@ public class Cards : MonoBehaviour
             }
             manager.turn += 1;
             moon.moonPass += 1;
+            manager.canPlay = true;
         }
     }
 
@@ -146,7 +146,16 @@ public class Cards : MonoBehaviour
                 florest.Ability(effect);
             }
             description.text = "";
-            if (effect != 12)
+            if (moon.boitata)
+            {
+                your.sanity = -15;
+                moon.boitata = false;
+            }
+            else if (effect == 12)
+            {
+                your.sanity = 10;
+            }
+            else
             {
                 your.sanity = 0;
             }

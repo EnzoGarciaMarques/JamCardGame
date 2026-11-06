@@ -3865,7 +3865,7 @@ MonoBehaviour:
   color: 1
   playedCard: 0
   description: {fileID: 1849508218}
-  descriptiontxt: Pula sua vez 2 vezes
+  descriptiontxt: Pula sua vez
   velocity: 6
   playPos: {fileID: 507938660}
   start: {fileID: 1215259607}
@@ -12341,6 +12341,7 @@ MonoBehaviour:
   description: {fileID: 613919889}
   descriptiontxt: 'Capelobo: -5% de sanidade mas ganha 2 escudos'
   velocity: 10
+  sanity: 0
   playPos: {fileID: 507938660}
   play: {fileID: 507938661}
   your: {fileID: 0}

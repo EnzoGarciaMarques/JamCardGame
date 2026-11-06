@@ -78,6 +78,7 @@ public class CardsEnemy : MonoBehaviour
         }
         if (sr.sortingOrder == play.layer - 3 && playedCard)
         {
+            update = false;
             playedCard = false;
             transform.position = start.position;
         }

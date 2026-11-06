@@ -3694,7 +3694,7 @@ MonoBehaviour:
   color: 1
   playedCard: 0
   description: {fileID: 1849508218}
-  descriptiontxt: Pula sua vez 2 vezes
+  descriptiontxt: Pula sua vez
   velocity: 6
   playPos: {fileID: 507938660}
   start: {fileID: 1215259607}
