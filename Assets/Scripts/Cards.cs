@@ -70,27 +70,10 @@ public class Cards : MonoBehaviour
             update = true;
             if (!florest.notPlayer && effect != 0 && !moon.noOnePLays)
             {
-                if (type == 1)
-                {
-                    sun.Ability(effect);
-                }
-                else if (type == 2)
-                {
-                    lake.Ability(effect);
-                }
-                else if (type == 3 && effect != 7)
-                {
-                    florest.Ability(effect);
-                }
-                else if (type == 4)
-                {
-                    moon.Ability(effect);
-                }
+                Power();
             }
-            else
-            {
-                florest.notPlayer = false;
-            }
+            florest.notPlayer = false;
+            your.pileCenter.Add(this);
             manager.turn += 1;
             moon.moonPass += 1;
             manager.canPlay = true;
@@ -111,21 +94,7 @@ public class Cards : MonoBehaviour
             {
                 if (manager.turn % 2 != 0 && manager.canPlay)
                 {
-                    SFXManagement.Instance.PlaySoundFXClip(playClip, transform, 1f);
-                    manager.canPlay = false;
-                    playedCard = true;
-                    lake.notInHand += 1;
-                    sr.sortingOrder = play.layer;
-                    play.type = type;
-                    play.color = color;
-                    if (effect == 2 && type == 4 && !florest.notPlayer && !moon.noOnePLays) 
-                    {
-                        play.type = 0;
-                        play.color = 0;
-                    }
-                    your.pileCenter.Add(this);
-                    your.available[handIndex] = true;
-                    play.layer += 1;
+                    CardPlay();
                 }
             }
         }      
@@ -151,9 +120,10 @@ public class Cards : MonoBehaviour
                 your.sanity = -15;
                 moon.boitata = false;
             }
-            else if (effect == 12)
+            else if (moon.boitata2)
             {
                 your.sanity = 10;
+                moon.boitata2 = false;
             }
             else
             {
@@ -163,6 +133,43 @@ public class Cards : MonoBehaviour
             your.ripped.Add(this);
             your.available[handIndex] = true;
             gameObject.SetActive(false);
+        }
+    }
+    void CardPlay()
+    {
+        SFXManagement.Instance.PlaySoundFXClip(playClip, transform, 1f);
+        manager.canPlay = false;
+        lake.notInHand += 1;
+        sr.sortingOrder = play.layer;
+        play.type = type;
+        play.color = color;
+        if (effect == 2 && type == 4 && !florest.notPlayer && !moon.noOnePLays)
+        {
+            play.type = 0;
+            play.color = 0;
+        }
+        your.available[handIndex] = true;
+        play.layer += 1;
+        playedCard = true;
+    }
+
+    void Power()
+    {
+        if (type == 1)
+        {
+            sun.Ability(effect);
+        }
+        else if (type == 2)
+        {
+            lake.Ability(effect);
+        }
+        else if (type == 3 && effect != 7)
+        {
+            florest.Ability(effect);
+        }
+        else if (type == 4)
+        {
+            moon.Ability(effect);
         }
     }
     private void OnMouseOver()

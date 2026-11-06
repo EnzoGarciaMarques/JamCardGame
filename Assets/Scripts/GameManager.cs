@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject ripped;
     public GameObject ripped2;
     public GameObject back;
+    bool now;
     [SerializeField] AudioClip rippedClip;
     private void Awake()
     {
@@ -48,20 +49,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         number.text = roundsMin + "/" + roundsMax;
-        if (turn > 2)
-        {
-            roundsMin += roundPlus;
-            turn = 1;
-            florest.lessInsanity = false;
-            if (sun.roundsPass == 0)
-            {
-                sun.roundsPass += 1;
-            }
-            if (lake.lakePass == 0)
-            {
-                lake.lakePass += 1;
-            }
-        }
+        
         if(roundsMin >= roundsMax && !win && !mon.death)
         {
             win = true;

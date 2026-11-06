@@ -8,7 +8,7 @@ public class CardsEnemy : MonoBehaviour
 {
     public int type;
     public int color;
-    [SerializeField] bool playedCard = false;
+    public bool playedCard = false;
     [SerializeField] TextMeshProUGUI description;
     [SerializeField] string descriptiontxt;
     public float velocity;
@@ -71,15 +71,32 @@ public class CardsEnemy : MonoBehaviour
             {
                 florest.notEnemy = false;
             }
-            manager.turn += 1;
+            if (type == 4 && effect == 6 && !florest.notEnemy && !moon.noOnePLays)
+            {
+                manager.turn += 2;
+            }
+            else
+            {
+                manager.turn += 1;
+            }
+            manager.roundsMin += manager.roundPlus;
+            florest.lessInsanity = false;
+            if (sun.roundsPass >= 0)
+            {
+                sun.roundsPass += 1;
+            }
+            if (lake.lakePass >= 0)
+            {
+                lake.lakePass += 1;
+            }
             moon.moonPass += 1;
             manager.canPlay = true;
 
         }
-        if (sr.sortingOrder == play.layer - 3 && playedCard)
+        if (sr.sortingOrder <= play.layer - 3 && playedCard)
         {
-            update = false;
             playedCard = false;
+            update = false;
             transform.position = start.position;
         }
     }

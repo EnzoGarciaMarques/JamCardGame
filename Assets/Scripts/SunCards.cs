@@ -75,12 +75,9 @@ public class SunCards : MonoBehaviour
     }
     private void Update()
     {
-        if (roundsPass == roundsEnd)
+        if (roundsPass >= roundsEnd)
         {
             manager.roundPlus = 1;
-        }
-        if(roundsEnd <= 0)
-        {
             roundsEnd = 0;
         }
     }

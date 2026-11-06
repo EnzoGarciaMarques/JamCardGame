@@ -31,7 +31,7 @@ public class EnemyCards : MonoBehaviour
         if (manager.turn % 2 == 0 && manager.canPlay == true && play.color != 0)
         {
             CardsEnemy randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
-            if (randCard.type == play.type || randCard.color == play.color)
+            if (randCard.type == play.type || randCard.color == play.color && !randCard.playedCard)
             {
                 randCard.gameObject.SetActive(true);
                 randCard.Play();

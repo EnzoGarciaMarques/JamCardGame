@@ -3698,7 +3698,7 @@ MonoBehaviour:
   velocity: 6
   playPos: {fileID: 507938660}
   start: {fileID: 1215259607}
-  effect: 1
+  effect: 6
   play: {fileID: 0}
   manager: {fileID: 0}
   steal: 0
@@ -4518,7 +4518,7 @@ GameObject:
   - component: {fileID: 507938661}
   m_Layer: 0
   m_Name: PosPlayed
-  m_TagString: Untagged
+  m_TagString: Jogar
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6675,6 +6675,8 @@ MonoBehaviour:
   noOnePLays: 0
   nextEnemy: 0
   nextPlayer: 0
+  boitata: 0
+  boitata2: 0
   san: {fileID: 0}
   your: {fileID: 0}
 --- !u!4 &748929857
@@ -11205,7 +11207,7 @@ Transform:
   m_GameObject: {fileID: 1215259606}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 8.25, z: 0}
+  m_LocalPosition: {x: 0, y: 8.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19496,7 +19498,7 @@ PrefabInstance:
       objectReference: {fileID: 507938661}
     - target: {fileID: 8566409930760105023, guid: 7aa05cda902e6ba4fab6150b73c1e268, type: 3}
       propertyPath: effect
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8566409930760105023, guid: 7aa05cda902e6ba4fab6150b73c1e268, type: 3}
       propertyPath: ripped

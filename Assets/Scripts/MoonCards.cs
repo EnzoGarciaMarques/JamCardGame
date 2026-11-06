@@ -21,6 +21,7 @@ public class MoonCards : MonoBehaviour
     public bool nextEnemy = false;
     public bool nextPlayer = false;
     public bool boitata = false;
+    public bool boitata2 = false;
     public Sanity san;
     public YourCards your;
     private void Awake()
@@ -45,11 +46,8 @@ public class MoonCards : MonoBehaviour
     {
         if (a == 1)
         {
-            manager.turn = 2;
-        }
-        if (a == 6)
-        {
-            manager.turn = 1;
+            manager.turn += 1;
+            manager.roundsMin += 1;
         }
         if (a == 2)
         {
@@ -64,14 +62,19 @@ public class MoonCards : MonoBehaviour
         }
         if (a == 4)
         {
-            your.Shuffle();
+            if(your.pileCenter.Count >= 1)
+            {
+                your.Shuffle();
+            }
         }
         if(a == 5)
         {
             boitata = true;
+            boitata2 = false;
         }
         if (a == 12)
         {
+            boitata2 = true;
             boitata = false;
         }
     }

@@ -6677,6 +6677,8 @@ MonoBehaviour:
   noOnePLays: 0
   nextEnemy: 0
   nextPlayer: 0
+  boitata: 0
+  boitata2: 0
   san: {fileID: 0}
   your: {fileID: 0}
 --- !u!4 &748929857
@@ -19872,7 +19874,7 @@ PrefabInstance:
       objectReference: {fileID: 507938661}
     - target: {fileID: 8566409930760105023, guid: 7aa05cda902e6ba4fab6150b73c1e268, type: 3}
       propertyPath: effect
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8566409930760105023, guid: 7aa05cda902e6ba4fab6150b73c1e268, type: 3}
       propertyPath: ripped
