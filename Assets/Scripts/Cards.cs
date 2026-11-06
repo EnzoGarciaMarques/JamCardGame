@@ -94,6 +94,7 @@ public class Cards : MonoBehaviour
             {
                 if (manager.turn % 2 != 0 && manager.canPlay)
                 {
+                    playedCard = true;
                     CardPlay();
                 }
             }
@@ -107,7 +108,7 @@ public class Cards : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-        if (hit.collider != null && hit.transform == transform)
+        if (hit.collider != null && hit.transform == transform && !your.pileCenter.Contains(this))
         {
             manager.Anima();
             if (type == 3 && effect == 7)
@@ -150,7 +151,6 @@ public class Cards : MonoBehaviour
         }
         your.available[handIndex] = true;
         play.layer += 1;
-        playedCard = true;
     }
 
     void Power()
