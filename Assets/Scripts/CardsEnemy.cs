@@ -71,14 +71,6 @@ public class CardsEnemy : MonoBehaviour
             {
                 florest.notEnemy = false;
             }
-            if (type == 4 && effect == 6 && !florest.notEnemy && !moon.noOnePLays)
-            {
-                manager.turn += 2;
-            }
-            else
-            {
-                manager.turn += 1;
-            }
             manager.roundsMin += manager.roundPlus;
             florest.lessInsanity = false;
             if (sun.roundsPass >= 0)
@@ -90,7 +82,17 @@ public class CardsEnemy : MonoBehaviour
                 lake.lakePass += 1;
             }
             moon.moonPass += 1;
-            manager.canPlay = true;
+            if (type == 4 && effect == 6 && !florest.notEnemy && !moon.noOnePLays)
+            {
+                manager.turn += 2;
+                manager.canPlay = true;
+            }
+            else
+            {
+                manager.turn += 1;
+                manager.canPlay = true;
+            }
+            
 
         }
         if (sr.sortingOrder <= play.layer - 3 && playedCard)
@@ -98,13 +100,14 @@ public class CardsEnemy : MonoBehaviour
             playedCard = false;
             update = false;
             transform.position = start.position;
+            enemy.pileCenter.Remove(this);
+            enemy.deck.Add(this);
         }
     }
     public void Play()
     {
         Debug.Log("joguei");
         SFXManagement.Instance.PlaySoundFXClip(playClip, transform, 1f);
-        manager.canPlay = false;
         placedTurn = manager.turn; 
         playedCard = true;
         sr.sortingOrder = play.layer;

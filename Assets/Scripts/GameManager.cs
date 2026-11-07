@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    float timer;
     public int turn = 1;
     public bool canPlay;
     public int roundsMax;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject ripped;
     public GameObject ripped2;
     public GameObject back;
+    public PlayedCard play;
     bool now;
     [SerializeField] AudioClip rippedClip;
     private void Awake()
@@ -54,6 +56,23 @@ public class GameManager : MonoBehaviour
         {
             win = true;
             StartCoroutine(Win());
+        }
+        if (turn % 2 == 0)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
+        }
+        if(timer >= 5)
+        {
+            int type = your.pileCenter[^1].type;
+            int color = your.pileCenter[^1].color;
+            timer = 0;
+            play.type = type;
+            play.color = color;
+            canPlay = true;
         }
     }
 

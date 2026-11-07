@@ -63,7 +63,7 @@ public class Sanity : MonoBehaviour
             a *= -1;
             florest.invert = false;
         }
-        if(a <= 0)
+        if(a < 0)
         {
             if(shield >= 1)
             {

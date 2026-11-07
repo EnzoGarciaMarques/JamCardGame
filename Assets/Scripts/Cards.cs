@@ -8,9 +8,9 @@ using UnityEngine.VFX;
 
 public class Cards : MonoBehaviour
 {
-    [SerializeField] int type;
+    public int type;
     [SerializeField] AudioClip playClip;
-    [SerializeField] int color;
+    public int color;
     [SerializeField] int effect;
     [SerializeField] bool playedCard = false;
     [SerializeField] TextMeshProUGUI description;
