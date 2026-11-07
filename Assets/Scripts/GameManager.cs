@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             timer = 0;
         }
-        if(timer >= 5)
+        if(timer >= 7)
         {
             int type = your.pileCenter[^1].type;
             int color = your.pileCenter[^1].color;
